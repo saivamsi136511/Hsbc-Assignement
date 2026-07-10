@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Login button returns HTTP 500 — all production users locked out",
+    "description": "Since the 3:00 PM deployment today, every user attempting to log in receives an HTTP 500 Internal Server Error. The application logs show a NullPointerException in the AuthenticationService. This is a production outage affecting 100% of users. Payment flows and checkout are also broken because they require authentication. Needs immediate fix.",
+    "submitter": "ops-team"
+  },
+  {
+    "title": "Dropdown menu overlaps content on mobile Safari",
+    "description": "On iOS Safari (iPhone 13 and 14), the navigation dropdown menu renders on top of the page content and does not close when tapping outside. The issue only occurs in portrait mode. Users can scroll around it as a workaround. Affects approximately 15% of our mobile users.",
+    "submitter": "qa-team"
+  },
+  {
+    "title": "Database query times out under high load — 20+ seconds",
+    "description": "The /api/reports endpoint takes 20-25 seconds to respond when there are more than 500 concurrent users. PostgreSQL EXPLAIN ANALYZE shows a sequential scan on the orders table (8 million rows) due to a missing index. Adding an index on (user_id, created_at) should resolve the issue. Severity: High — affects peak hours.",
+    "submitter": "backend-dev"
+  },
+  {
+    "title": "OAuth2 Google login fails after token refresh",
+    "description": "When a user's Google OAuth2 token expires and the system attempts to refresh it, the refresh always fails with 'invalid_grant'. Users are then silently logged out. The issue started after updating the google-auth library from 2.15 to 2.22. Downgrading restores functionality. Affects all users using Google SSO.",
+    "submitter": "identity-team"
+  },
+  {
+    "title": "SQL injection vulnerability in search endpoint",
+    "description": "The /api/search endpoint directly concatenates user input into SQL queries without parameterization. A malicious actor can extract the entire users table using: ?q=1' UNION SELECT username,password,3 FROM users--. Confirmed in staging. This is a critical security vulnerability that must be patched before the next release.",
+    "submitter": "security-audit"
+  },
+  {
+    "title": "Dashboard charts take 12 seconds to load",
+    "description": "The analytics dashboard charts load in 12 seconds on average. Profiling shows the issue is in the aggregation query — it computes the last 90 days of data on every request instead of using cached results. Implementing Redis caching with a 5-minute TTL should reduce this to under 1 second. Affects all dashboard users.",
+    "submitter": "frontend-dev"
+  },
+  {
+    "title": "Payment confirmation email not sent after checkout",
+    "description": "Since yesterday's release (v2.4.1), users complete checkout successfully (payment charged) but do not receive the confirmation email. The email service logs show the task is added to the queue but never processed. The Celery worker appears to be crashing silently. Revenue impact: ~200 orders/day without confirmation.",
+    "submitter": "customer-support"
+  },
+  {
+    "title": "Wrong currency symbol displayed for EUR users",
+    "description": "Users with their locale set to German (de-DE) or French (fr-FR) see prices displayed with a $ symbol instead of the euro sign. This is a localization bug in the formatCurrency() function — it doesn't check the user's locale and defaults to USD. Cosmetic issue only; actual charge is correct.",
+    "submitter": "i18n-team"
+  },
+  {
+    "title": "API rate limiting not applied to /api/export endpoint",
+    "description": "The /api/export endpoint, which can generate CSV exports of millions of rows, has no rate limiting. A user can call it repeatedly and effectively DDoS the database. We should add the same 10 req/min rate limit applied to other endpoints. Low urgency but should be addressed before public API launch.",
+    "submitter": "backend-dev"
+  },
+  {
+    "title": "Android app crashes on startup on Android 8.0 devices",
+    "description": "The latest APK (v3.1.0) crashes immediately on launch for devices running Android 8.0 (Oreo). Stack trace shows java.lang.NoSuchMethodError related to the new encryption library we added. Android 9+ devices are unaffected. Approximately 8% of our user base is on Android 8.0.",
+    "submitter": "mobile-qa"
+  }
+]

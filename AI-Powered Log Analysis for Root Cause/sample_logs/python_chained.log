@@ -1,0 +1,19 @@
+2026-07-10 09:14:02 INFO  Starting batch job order_sync (batch_id=88213)
+2026-07-10 09:14:02 INFO  Fetched 4021 orders from queue
+2026-07-10 09:14:03 DEBUG Processing order 5591
+Traceback (most recent call last):
+  File "/srv/app/workers/sync.py", line 88, in process_order
+    total = compute_total(order)
+  File "/srv/app/workers/pricing.py", line 41, in compute_total
+    discount = order["meta"]["discount_pct"]
+KeyError: 'discount_pct'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/srv/app/workers/sync.py", line 92, in process_order
+    raise OrderProcessingError(f"failed on order {order['id']}") from e
+  File "/srv/app/workers/sync.py", line 15, in __init__
+    super().__init__(msg)
+app.errors.OrderProcessingError: failed on order 5591
+2026-07-10 09:14:03 ERROR Job batch_id=88213 aborted after 1 failure

@@ -1,0 +1,13 @@
+2026-07-10T11:22:03.104Z [info] server listening on port 3000
+2026-07-10T11:22:19.881Z [info] handling GET /api/users/442
+/srv/app/src/services/userService.js:27
+    return user.profile.avatarUrl.toLowerCase();
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at getAvatarUrl (/srv/app/src/services/userService.js:27:29)
+    at /srv/app/src/routes/users.js:15:22
+    at Layer.handle [as handle_request] (/srv/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/srv/app/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/srv/app/node_modules/express/lib/router/route.js:114:3)
+Emitted 'error' event on Server instance

@@ -1,0 +1,12 @@
+2026-07-10 10:02:11.442 [http-nio-8080-exec-3] INFO  c.acme.OrderController - Received checkout request id=9931
+2026-07-10 10:02:11.500 [http-nio-8080-exec-3] ERROR c.acme.OrderController - Unhandled exception during checkout
+Exception in thread "http-nio-8080-exec-3" java.lang.NullPointerException: Cannot invoke "com.acme.model.Cart.getItems()" because "cart" is null
+	at com.acme.service.CheckoutService.calculateTotal(CheckoutService.java:57)
+	at com.acme.service.CheckoutService.checkout(CheckoutService.java:33)
+	at com.acme.controller.OrderController.handleCheckout(OrderController.java:80)
+	at com.acme.controller.OrderController.doPost(OrderController.java:44)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+Caused by: java.lang.IllegalStateException: cart session expired
+	at com.acme.service.CartSessionStore.get(CartSessionStore.java:22)
+	at com.acme.service.CheckoutService.calculateTotal(CheckoutService.java:54)
+	... 3 more

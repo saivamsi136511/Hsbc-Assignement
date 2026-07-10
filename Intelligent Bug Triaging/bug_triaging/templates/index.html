@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligent Bug Triaging | AI-Powered Dashboard</title>
+  <meta name="description" content="AI-powered intelligent bug triaging system. Submit bug reports, get automatic categorization, severity scoring, and team assignment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <span class="nav-logo">&#x1F41B;</span>
+    <span class="nav-title">BugTriager <span class="nav-badge">AI</span></span>
+  </div>
+  <div class="nav-center">
+    <div class="search-bar" id="globalSearchBar">
+      <span class="search-icon">&#x1F50D;</span>
+      <input type="text" id="globalSearch" placeholder="Search tickets&#x2026;" autocomplete="off" />
+      <kbd>Ctrl+K</kbd>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-primary" id="newBugBtn">+ Report Bug</button>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Views</div>
+    <button class="sidebar-item active" data-view="all" id="viewAll">
+      <span class="si-icon">&#x1F4CB;</span> All Tickets
+      <span class="si-count" id="countAll">0</span>
+    </button>
+    <button class="sidebar-item" data-view="open" id="viewOpen">
+      <span class="si-icon">&#x1F513;</span> Open
+      <span class="si-count" id="countOpen">0</span>
+    </button>
+    <button class="sidebar-item" data-view="critical" id="viewCritical">
+      <span class="si-icon">&#x1F534;</span> Critical
+      <span class="si-count" id="countCritical">0</span>
+    </button>
+    <button class="sidebar-item" data-view="in-progress" id="viewInProgress">
+      <span class="si-icon">&#x2699;&#xFE0F;</span> In Progress
+      <span class="si-count" id="countInProgress">0</span>
+    </button>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">Categories</div>
+    <button class="sidebar-item" data-category="UI"><span class="si-icon">&#x1F3A8;</span> UI</button>
+    <button class="sidebar-item" data-category="Backend"><span class="si-icon">&#x2699;&#xFE0F;</span> Backend</button>
+    <button class="sidebar-item" data-category="Database"><span class="si-icon">&#x1F5C4;&#xFE0F;</span> Database</button>
+    <button class="sidebar-item" data-category="Authentication"><span class="si-icon">&#x1F510;</span> Authentication</button>
+    <button class="sidebar-item" data-category="Security"><span class="si-icon">&#x1F6E1;&#xFE0F;</span> Security</button>
+    <button class="sidebar-item" data-category="Performance"><span class="si-icon">&#x26A1;</span> Performance</button>
+    <button class="sidebar-item" data-category="Network"><span class="si-icon">&#x1F310;</span> Network</button>
+    <button class="sidebar-item" data-category="Mobile"><span class="si-icon">&#x1F4F1;</span> Mobile</button>
+    <button class="sidebar-item" data-category="Infrastructure"><span class="si-icon">&#x1F3D7;&#xFE0F;</span> Infrastructure</button>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+
+  <!-- Stats Bar -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalVal">0</div>
+      <div class="stat-label">Total Bugs</div>
+    </div>
+    <div class="stat-card critical">
+      <div class="stat-value" id="statCriticalVal">0</div>
+      <div class="stat-label">Critical</div>
+    </div>
+    <div class="stat-card high">
+      <div class="stat-value" id="statHighVal">0</div>
+      <div class="stat-label">High</div>
+    </div>
+    <div class="stat-card medium">
+      <div class="stat-value" id="statMediumVal">0</div>
+      <div class="stat-label">Medium</div>
+    </div>
+    <div class="stat-card low">
+      <div class="stat-value" id="statLowVal">0</div>
+      <div class="stat-label">Low</div>
+    </div>
+    <div class="stat-card p1">
+      <div class="stat-value" id="statP1Val">0</div>
+      <div class="stat-label">P1 Priority</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span class="toolbar-title" id="toolbarTitle">All Tickets</span>
+      <span class="ticket-count-badge" id="ticketCountBadge">0 tickets</span>
+    </div>
+    <div class="toolbar-right">
+      <select class="filter-select" id="filterCategory">
+        <option value="">All Categories</option>
+        <option value="UI">UI</option>
+        <option value="Backend">Backend</option>
+        <option value="Database">Database</option>
+        <option value="Authentication">Authentication</option>
+        <option value="Security">Security</option>
+        <option value="Performance">Performance</option>
+        <option value="Network">Network</option>
+        <option value="Mobile">Mobile</option>
+        <option value="Infrastructure">Infrastructure</option>
+      </select>
+      <select class="filter-select" id="filterSeverity">
+        <option value="">All Severities</option>
+        <option value="Critical">Critical</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <select class="filter-select" id="filterStatus">
+        <option value="">All Statuses</option>
+        <option value="Open">Open</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+        <option value="Duplicate">Duplicate</option>
+      </select>
+      <button class="btn btn-ghost" id="refreshBtn">&#x21BB; Refresh</button>
+    </div>
+  </div>
+
+  <!-- Ticket List -->
+  <div class="ticket-list" id="ticketList">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">&#x1F41B;</div>
+      <div class="empty-title">No bugs yet!</div>
+      <div class="empty-sub">Click "Report Bug" to submit your first bug report.</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detailOverlay"></div>
+<aside class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <div class="detail-header-left">
+      <span class="detail-bug-id" id="detailBugId">BUG-0000</span>
+      <span class="detail-status-badge" id="detailStatusBadge">Open</span>
+    </div>
+    <button class="detail-close" id="detailClose">&#x2715;</button>
+  </div>
+  <div class="detail-body" id="detailBody"></div>
+  <div class="detail-footer">
+    <div class="detail-actions">
+      <select class="filter-select" id="detailStatusSelect">
+        <option value="Open">Open</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+      </select>
+      <button class="btn btn-primary btn-sm" id="detailSaveBtn">Save</button>
+    </div>
+  </div>
+</aside>
+
+<!-- SUBMIT MODAL -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal" id="submitModalBox" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-icon">&#x1F41B;</span>
+        <h2 class="modal-title" id="modalTitle">Report a Bug</h2>
+      </div>
+      <button class="modal-close" id="modalClose">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label" for="bugTitle">Bug Title <span class="required">*</span></label>
+        <input class="form-input" type="text" id="bugTitle"
+          placeholder="e.g. Login button returns HTTP 500 in production"
+          maxlength="200" autocomplete="off" />
+        <div class="char-count"><span id="titleCharCount">0</span>/200</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="bugDescription">Description <span class="required">*</span></label>
+        <textarea class="form-textarea" id="bugDescription" rows="7"
+          placeholder="Describe the bug in detail. Include:&#10;&#x2022; Steps to reproduce&#10;&#x2022; Expected vs actual behavior&#10;&#x2022; Who is affected (e.g. all users, specific role)&#10;&#x2022; Environment (production/staging)&#10;&#x2022; Any error messages"></textarea>
+        <div class="char-count"><span id="descCharCount">0</span> characters</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="bugSubmitter">Your Name / Email</label>
+        <input class="form-input" type="text" id="bugSubmitter" placeholder="anonymous" autocomplete="off" />
+      </div>
+      <div class="form-hint">
+        <span class="hint-icon">&#x1F916;</span>
+        Our AI will automatically classify the bug, assign a severity score, determine priority, and route it to the right team.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="modalCancelBtn">Cancel</button>
+      <button class="btn btn-primary" id="modalSubmitBtn">
+        <span class="btn-text">Submit Bug Report</span>
+        <span class="btn-loader" style="display:none">Analyzing&#x2026;</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT MODAL -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal result-modal" id="resultModalBox">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-icon">&#x2705;</span>
+        <h2 class="modal-title">Bug Triaged Successfully</h2>
+      </div>
+      <button class="modal-close" id="resultClose">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="resultBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="resultDoneBtn">Done</button>
+      <button class="btn btn-primary" id="resultViewBtn">View Ticket</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Databases & local state
+*.db-shm
+*.db-wal
+
+# VRT Temp Output
+vrt_output/
+report.html
+result.json

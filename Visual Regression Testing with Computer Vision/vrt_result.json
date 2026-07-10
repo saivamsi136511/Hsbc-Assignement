@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-07-10T16:13:45.061334",
+  "baseline": "sample_screenshots/baseline.png",
+  "current": "sample_screenshots/new_deployment.png",
+  "result": {
+    "passed": false,
+    "severity": "high"
+  },
+  "opencv_metrics": {
+    "ssim_score": 0.706161711233767,
+    "changed_pixels_pct": 13.5,
+    "total_changed_pixels": 141521,
+    "layout_shift": true,
+    "feature_match_score": 0.1192,
+    "edge_diff_score": 0.0416,
+    "histogram_similarity": 0.0834
+  },
+  "changed_regions": [
+    {
+      "x": 0,
+      "y": 44,
+      "width": 991,
+      "height": 980,
+      "area": 314640,
+      "severity": "low",
+      "description": "Changed region at (0,44) size 991\u00d7980px, \u0394intensity=26.1"
+    },
+    {
+      "x": 252,
+      "y": 521,
+      "width": 707,
+      "height": 278,
+      "area": 153959,
+      "severity": "low",
+      "description": "Changed region at (252,521) size 707\u00d7278px, \u0394intensity=24.4"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 54,
+      "area": 34652,
+      "severity": "low",
+      "description": "Changed region at (0,0) size 1024\u00d754px, \u0394intensity=19.2"
+    },
+    {
+      "x": 163,
+      "y": 975,
+      "width": 297,
+      "height": 42,
+      "area": 11556,
+      "severity": "low",
+      "description": "Changed region at (163,975) size 297\u00d742px, \u0394intensity=20.7"
+    },
+    {
+      "x": 212,
+      "y": 51,
+      "width": 102,
+      "height": 67,
+      "area": 6509,
+      "severity": "low",
+      "description": "Changed region at (212,51) size 102\u00d767px, \u0394intensity=14.7"
+    },
+    {
+      "x": 416,
+      "y": 51,
+      "width": 95,
+      "height": 45,
+      "area": 3764,
+      "severity": "low",
+      "description": "Changed region at (416,51) size 95\u00d745px, \u0394intensity=19.4"
+    },
+    {
+      "x": 517,
+      "y": 52,
+      "width": 89,
+      "height": 44,
+      "area": 3518,
+      "severity": "low",
+      "description": "Changed region at (517,52) size 89\u00d744px, \u0394intensity=19.9"
+    },
+    {
+      "x": 319,
+      "y": 52,
+      "width": 92,
+      "height": 40,
+      "area": 3449,
+      "severity": "low",
+      "description": "Changed region at (319,52) size 92\u00d740px, \u0394intensity=19.6"
+    },
+    {
+      "x": 611,
+      "y": 51,
+      "width": 82,
+      "height": 44,
+      "area": 3273,
+      "severity": "low",
+      "description": "Changed region at (611,51) size 82\u00d744px, \u0394intensity=19.5"
+    },
+    {
+      "x": 913,
+      "y": 323,
+      "width": 75,
+      "height": 41,
+      "area": 2938,
+      "severity": "low",
+      "description": "Changed region at (913,323) size 75\u00d741px, \u0394intensity=20.6"
+    },
+    {
+      "x": 913,
+      "y": 386,
+      "width": 75,
+      "height": 41,
+      "area": 2922,
+      "severity": "low",
+      "description": "Changed region at (913,386) size 75\u00d741px, \u0394intensity=19.9"
+    },
+    {
+      "x": 913,
+      "y": 261,
+      "width": 74,
+      "height": 41,
+      "area": 2886,
+      "severity": "low",
+      "description": "Changed region at (913,261) size 74\u00d741px, \u0394intensity=15.4"
+    },
+    {
+      "x": 940,
+      "y": 127,
+      "width": 49,
+      "height": 51,
+      "area": 2236,
+      "severity": "low",
+      "description": "Changed region at (940,127) size 49\u00d751px, \u0394intensity=15.3"
+    },
+    {
+      "x": 1002,
+      "y": 1002,
+      "width": 22,
+      "height": 22,
+      "area": 409,
+      "severity": "low",
+      "description": "Changed region at (1002,1002) size 22\u00d722px, \u0394intensity=18.8"
+    }
+  ],
+  "ai_analysis": null,
+  "artefacts": {
+    "heatmap": "vrt_output\\vrt_heatmap.png",
+    "annotated": "vrt_output\\vrt_annotated.png",
+    "diff": "vrt_output\\vrt_diff.png"
+  }
+}

@@ -1,0 +1,4 @@
+anthropic>=0.40.0
+# Only required if you use --backend anthropic.
+# --backend ollama (the default) needs no extra packages -- it uses the
+# Python standard library's urllib to talk to your local Ollama server.
