@@ -29,7 +29,7 @@ PROJECTS = {
     },
     "3": {
         "name": "Intelligent Bug Triaging",
-        "dir": "Intelligent Bug Triaging/bug_triaging",
+        "dir": "Intelligent Bug Triaging",
         "cmd": [sys.executable, "-u", "app.py"],
         "desc": "Starts the Flask bug triaging web server on port 5000."
     },

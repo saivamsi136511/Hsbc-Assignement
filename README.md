@@ -31,7 +31,7 @@ This starts a console-based selection menu allowing you to launch and validate a
      Subdirectory: Automated Test Case Generation
   3) Intelligent Bug Triaging
      Description : Starts the Flask bug triaging web server on port 5000.
-     Subdirectory: Intelligent Bug Triaging/bug_triaging
+     Subdirectory: Intelligent Bug Triaging
   4) Visual Regression Testing with Computer Vision
      Description : Runs the multi-layer OpenCV comparison on dashboard screenshots.
      Subdirectory: Visual Regression Testing with Computer Vision
@@ -104,10 +104,9 @@ HSBC Assignment/
 │   └── test_generated.py     ← Generated test suite output
 │
 ├── Intelligent Bug Triaging/
-│   └── bug_triaging/
-│       ├── app.py            ← Flask server dashboard
-│       ├── database.py       ← SQLite schema & data access layer
-│       └── triaging_engine.py← Severity, Priority, Assignee engine
+│   ├── app.py            ← Flask server dashboard
+│   ├── database.py       ← SQLite schema & data access layer
+│   └── triaging_engine.py← Severity, Priority, Assignee engine
 │
 ├── Visual Regression Testing with Computer Vision/
 │   ├── visual_regressor.py   ← CLI orchestrator (SSIM, ORB, Canny)

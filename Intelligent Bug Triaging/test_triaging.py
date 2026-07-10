@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """Quick test of the bug triaging engine."""
 
+import sys
+
+# Force UTF-8 stdout/stderr on Windows to avoid cp1252 codec errors
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except AttributeError:
+        pass
+
 from triaging_engine import TriagingEngine
 from models import BugReport
 
@@ -63,4 +73,4 @@ print(f"Severity: {ticket4.severity}")
 print(f"Priority: {ticket4.priority}")
 print(f"Team: {ticket4.assigned_team}")
 
-print("\n✅ All tests executed successfully!")
+print("\n[SUCCESS] All tests executed successfully!")

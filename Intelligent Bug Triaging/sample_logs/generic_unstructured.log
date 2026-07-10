@@ -1,6 +1,0 @@
-2026-07-10 08:00:01 INFO  healthcheck ok
-2026-07-10 08:00:31 INFO  healthcheck ok
-2026-07-10 08:01:01 WARN  disk usage at 81%
-2026-07-10 08:01:31 ERROR failed to connect to redis at cache-01:6379: connection refused after 3 retries
-2026-07-10 08:01:31 ERROR request queue backing up, dropping oldest 200 jobs
-2026-07-10 08:02:01 INFO  healthcheck ok
