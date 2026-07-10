@@ -28,6 +28,7 @@ if sys.platform == "win32":
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from self_healing_driver import SelfHealingDriver, LocatorHealingError
 
@@ -43,8 +44,14 @@ def run_test():
     options = Options()
     # Run headlessly for CI / non-GUI environments
     options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(options=options)
+    service = None
+    if os.path.exists("/usr/bin/chromedriver"):
+        service = Service("/usr/bin/chromedriver")
+
+    driver = webdriver.Chrome(service=service, options=options)
     healing = SelfHealingDriver(driver, model=OLLAMA_MODEL)
 
     try:

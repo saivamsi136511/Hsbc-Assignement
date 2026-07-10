@@ -1,0 +1,12 @@
+anthropic>=0.40.0
+requests>=2.31.0
+pytest>=8.0
+flask>=2.3.0
+opencv-python-headless>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+scikit-image>=0.21.0
+rich>=13.0.0
+selenium>=4.15
+beautifulsoup4>=4.12
+webdriver-manager>=4.0
