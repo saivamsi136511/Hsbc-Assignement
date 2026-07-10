@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Demo App - Login</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 360px; margin: 80px auto; }
+  input { display: block; width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+  button { padding: 8px 16px; cursor: pointer; }
+  #result { margin-top: 16px; font-weight: bold; color: green; }
+</style>
+</head>
+<body>
+  <h2>Sign In</h2>
+
+  <!--
+    NOTE: This markup represents a "new" version of the UI after a redesign.
+    The original test suite was written against an OLDER version of this page,
+    where the fields were: #username, #password, #login-btn.
+    A developer renamed the ids during a refactor:
+      #username   -> #user_email
+      #password   -> #user_pwd
+      #login-btn  -> #btn-submit-login
+    The old test's locators are now broken, which is exactly what the
+    self-healing driver is designed to recover from at runtime.
+  -->
+  <form id="signin-form">
+    <label for="user_email">Email</label>
+    <input type="email" id="user_email" name="user_email" placeholder="you@example.com">
+
+    <label for="user_pwd">Password</label>
+    <input type="password" id="user_pwd" name="user_pwd" placeholder="Password">
+
+    <button type="button" id="btn-submit-login">Log In</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('btn-submit-login').addEventListener('click', function () {
+      var email = document.getElementById('user_email').value;
+      var pwd = document.getElementById('user_pwd').value;
+      var result = document.getElementById('result');
+      if (email.length > 0 && pwd.length > 0) {
+        result.textContent = 'Login Successful';
+      } else {
+        result.textContent = 'Please fill in both fields';
+        result.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

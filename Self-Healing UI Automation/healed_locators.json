@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": "2026-07-10 23:02:48",
+    "old_locator": {
+      "by": "id",
+      "value": "username"
+    },
+    "new_locator": {
+      "by": "css",
+      "value": "#user_email"
+    },
+    "confidence": 1.0,
+    "reasoning": "The id 'username' was renamed to 'user_email'",
+    "suggested_code_fix": "By.CSS, \"#user_email\"  # was By.ID, \"username\""
+  },
+  {
+    "timestamp": "2026-07-10 23:03:09",
+    "old_locator": {
+      "by": "id",
+      "value": "password"
+    },
+    "new_locator": {
+      "by": "id",
+      "value": "user_pwd"
+    },
+    "confidence": 1.0,
+    "reasoning": "The password input field's id matches the broken locator.",
+    "suggested_code_fix": "By.ID, \"user_pwd\"  # was By.ID, \"password\""
+  },
+  {
+    "timestamp": "2026-07-10 23:03:28",
+    "old_locator": {
+      "by": "id",
+      "value": "login-btn"
+    },
+    "new_locator": {
+      "by": "css",
+      "value": "#btn-submit-login"
+    },
+    "confidence": 1.0,
+    "reasoning": "Exact match of id attribute in DOM element",
+    "suggested_code_fix": "By.CSS, \"#btn-submit-login\"  # was By.ID, \"login-btn\""
+  }
+]
