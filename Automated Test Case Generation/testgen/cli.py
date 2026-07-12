@@ -94,6 +94,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     p.add_argument("--with-stub", action="store_true",
                    help="Also generate a minimal solution stub scaffold.")
 
+    # Dry-run / offline demo
+    p.add_argument("--dry-run", action="store_true",
+                   help="Parse the story and show batching statistics without "
+                        "contacting Ollama. Useful for offline demos and CI checks.")
+
     return p
 
 
@@ -145,6 +150,44 @@ def main(argv=None) -> None:
     use_batch = (not cfg.no_batch) and (
         cfg.force_batch or len(items) > cfg.batch_threshold
     )
+
+    # ------------------------------------------------------------------ #
+    # DRY-RUN MODE: show parsing/batching stats, skip Ollama entirely
+    # ------------------------------------------------------------------ #
+    if args.dry_run:
+        sep = "=" * 60
+        print(sep)
+        print("  AUTOMATED TEST CASE GENERATION  --  DRY-RUN MODE")
+        print(sep)
+        print(f"  Input file : {input_path}")
+        print(f"  Preamble   : {len(preamble)} characters")
+        print(f"  Acceptance criteria found: {len(items)}")
+        if use_batch:
+            from math import ceil
+            n_batches = ceil(len(items) / cfg.batch_size)
+            print(f"  Batch mode : ENABLED  (threshold={cfg.batch_threshold}, "
+                  f"batch_size={cfg.batch_size})")
+            print(f"  Batches    : {n_batches}")
+            for i in range(n_batches):
+                start = i * cfg.batch_size
+                chunk = items[start:start + cfg.batch_size]
+                print(f"    Batch {i + 1:>2}: {len(chunk)} criteria")
+        else:
+            print(f"  Batch mode : DISABLED (story is under "
+                  f"threshold of {cfg.batch_threshold} criteria)")
+        print()
+        print("  In live mode the tool would:")
+        print("    1. Send each batch to Ollama (model: "
+              f"{cfg.model})")
+        print("    2. Auto-heal any syntax errors (max retries: "
+              f"{cfg.max_retries})")
+        print("    3. AST-merge batch outputs into one clean PyTest module")
+        print(f"    4. Write the suite to: {cfg.output_path}")
+        print()
+        print("  [dry-run] Ollama call skipped. Re-run without "
+              "--dry-run to generate a real test suite.")
+        print(sep)
+        return
 
     ollama_kwargs = cfg.to_ollama_kwargs()
 

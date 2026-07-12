@@ -24,8 +24,9 @@ PROJECTS = {
     "2": {
         "name": "Automated Test Case Generation",
         "dir": "Automated Test Case Generation",
-        "cmd": [sys.executable, "-u", "solution.py"],
-        "desc": "Runs the test case generator showing sample user stories converted to test templates."
+        "cmd": [sys.executable, "-u", "generate_tests.py", "-i", "samples/sample_user_story.md",
+                "-o", "test_generated.py", "--dry-run"],
+        "desc": "Parses the sample user story and shows acceptance criteria, batching plan, and generation pipeline (dry-run — no Ollama needed)."
     },
     "3": {
         "name": "Intelligent Bug Triaging",

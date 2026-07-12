@@ -677,6 +677,10 @@ def main():
                               "tests are importable/collectible immediately. "
                               "Rename it to solution.py (or point your real module "
                               "at the same names) and fill in real logic.")
+    parser.add_argument("--dry-run", action="store_true",
+                         help="Parse the story and print acceptance-criteria and batching "
+                              "statistics without contacting Ollama. "
+                              "Useful for offline demos and CI checks.")
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -702,6 +706,41 @@ def main():
     use_batch = (not args.no_batch) and (
         args.force_batch or len(items) > args.batch_threshold
     )
+
+    # ------------------------------------------------------------------ #
+    # DRY-RUN MODE: show parsing/batching statistics, skip Ollama entirely
+    # ------------------------------------------------------------------ #
+    if args.dry_run:
+        from math import ceil
+        sep = "=" * 60
+        print(sep)
+        print("  AUTOMATED TEST CASE GENERATION  --  DRY-RUN MODE")
+        print(sep)
+        print(f"  Input file : {input_path}")
+        print(f"  Preamble   : {len(preamble)} characters")
+        print(f"  Acceptance criteria found: {len(items)}")
+        if use_batch:
+            n_batches = ceil(len(items) / args.batch_size)
+            print(f"  Batch mode : ENABLED  "
+                  f"(threshold={args.batch_threshold}, batch_size={args.batch_size})")
+            print(f"  Batches    : {n_batches}")
+            for i in range(n_batches):
+                chunk = items[i * args.batch_size:(i + 1) * args.batch_size]
+                print(f"    Batch {i + 1:>2}: {len(chunk)} criteria")
+        else:
+            print(f"  Batch mode : DISABLED "
+                  f"(story is under threshold of {args.batch_threshold} criteria)")
+        print()
+        print("  In live mode the tool would:")
+        print(f"    1. Send each batch to Ollama (model: {args.model})")
+        print(f"    2. Auto-heal any syntax errors (max retries: {args.max_retries})")
+        print("    3. AST-merge batch outputs into one clean PyTest module")
+        print(f"    4. Write the suite to: {args.output}")
+        print()
+        print("  [dry-run] Ollama call skipped. "
+              "Re-run without --dry-run to generate a real test suite.")
+        print(sep)
+        return
 
     try:
         if use_batch and items:
