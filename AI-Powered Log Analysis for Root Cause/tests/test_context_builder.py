@@ -30,11 +30,16 @@ from parsers import ParsedError, StackFrame
 def make_error(error_type="ValueError", message="Something went wrong",
                frames=None, context_before=None, occurrence_count=1):
     """Create a minimal ParsedError for testing."""
+    cb = context_before
+    if cb is None:
+        cb = ""
+    elif isinstance(cb, list):
+        cb = "\n".join(cb)
     return ParsedError(
         error_type=error_type,
         message=message,
         frames=frames or [],
-        context_before=context_before or [],
+        context_before=cb,
         raw_block=f"{error_type}: {message}",
         format="python",
         occurrence_count=occurrence_count,

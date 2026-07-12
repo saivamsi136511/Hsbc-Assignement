@@ -15,6 +15,7 @@ Tests cover:
 
 import ast
 import pytest
+import textwrap
 from testgen.merge import merge_batches
 
 

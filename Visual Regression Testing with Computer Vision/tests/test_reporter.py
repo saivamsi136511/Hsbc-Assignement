@@ -38,11 +38,16 @@ def make_mock_cv_result(passed=True, ssim=0.97, regions=None):
     mock = MagicMock()
     mock.passed = passed
     mock.ssim_score = ssim
+    mock.total_changed_pixels = 1500 if not passed else 100
     mock.changed_percentage = 1.5 if not passed else 0.2
     mock.layout_shift_detected = False
     mock.changed_regions = regions or []
     mock.edge_diff_percentage = 0.5
+    mock.edge_diff_score = 0.05
+    mock.feature_match_score = 0.95
     mock.histogram_correlation = {"R": 0.99, "G": 0.99, "B": 0.99}
+    mock.histogram_similarity = 0.99
+    mock.severity = "medium"
     mock.error = None
     return mock
 
