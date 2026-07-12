@@ -115,11 +115,12 @@ function renderTicketList(tickets) {
   badge.textContent = `${tickets.length} ticket${tickets.length !== 1 ? 's' : ''}`;
   if (!tickets.length) {
     list.innerHTML = '';
-    list.appendChild(empty);
+    list.style.display = 'none';
     empty.style.display = '';
     return;
   }
   empty.style.display = 'none';
+  list.style.display = '';
   list.innerHTML = tickets.map(renderTicketCard).join('');
   list.querySelectorAll('.ticket-card').forEach(card => {
     card.addEventListener('click', () => {

@@ -40,5 +40,47 @@
     "confidence": 1.0,
     "reasoning": "Exact match of id attribute in DOM element",
     "suggested_code_fix": "By.CSS, \"#btn-submit-login\"  # was By.ID, \"login-btn\""
+  },
+  {
+    "timestamp": "2026-07-12 10:11:09",
+    "old_locator": {
+      "by": "id",
+      "value": "username"
+    },
+    "new_locator": {
+      "by": "name",
+      "value": "user_email"
+    },
+    "confidence": 0.9,
+    "reasoning": "The input field for email/username is identified by name 'user_email'.",
+    "suggested_code_fix": "By.NAME, \"user_email\"  # was By.ID, \"username\""
+  },
+  {
+    "timestamp": "2026-07-12 10:11:25",
+    "old_locator": {
+      "by": "id",
+      "value": "password"
+    },
+    "new_locator": {
+      "by": "id",
+      "value": "user_pwd"
+    },
+    "confidence": 1.0,
+    "reasoning": "The element with id 'user_pwd' is the password input field for login.",
+    "suggested_code_fix": "By.ID, \"user_pwd\"  # was By.ID, \"password\""
+  },
+  {
+    "timestamp": "2026-07-12 10:11:41",
+    "old_locator": {
+      "by": "id",
+      "value": "login-btn"
+    },
+    "new_locator": {
+      "by": "id",
+      "value": "btn-submit-login"
+    },
+    "confidence": 1.0,
+    "reasoning": "The button with id 'btn-submit-login' is the submit/login button.",
+    "suggested_code_fix": "By.ID, \"btn-submit-login\"  # was By.ID, \"login-btn\""
   }
 ]

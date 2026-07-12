@@ -1,122 +1,98 @@
 """
 ASSUMPTIONS:
-- The function to reset a password is named `reset_password`.
-- It takes the following parameters: 
-  - `email` (str): The user's email address.
-  - `otp` (str): The one-time password received via email.
-  - `new_password` (str): The new password to set.
-- The function returns a boolean indicating whether the password reset was successful.
+- The function under test is `login` which takes two parameters: `email`
+  (str) and `password` (str).
+- The function returns a tuple containing the authentication token, JWT
+  access token, refresh token, and an error message if any.
 """
-from solution import reset_password
+from solution import patch
+
 import pytest
+from unittest.mock import patch
+from solution import login
 
-# --- Happy path ---
-def test_reset_password_success():
-    """Test happy path for resetting password."""
-    result = reset_password("user@example.com", "12345678", "NewP@ssw0rd")
-    assert result == True
+def test_login_happy_path():
+    # --- Happy path ---
+    email = "user@example.com"
+    password = "Password123!"
+    auth_token, jwt_access_token, refresh_token, _ = login(email, password)
+    assert isinstance(auth_token, str)
+    assert isinstance(jwt_access_token, str)
+    assert isinstance(refresh_token, str)
 
-# --- Boundary value analysis ---
-@pytest.mark.parametrize("email, otp, new_password, expected",
-                         [
-                             ("user@example.com", "12345678", "NewP@ssw0rd", True),
-                             (None, "12345678", "NewP@ssw0rd", False),
-                             ("", "12345678", "NewP@ssw0rd", False),
-                             ("user@example.com", None, "NewP@ssw0rd", False),
-                             ("user@example.com", "", "NewP@ssw0rd", False),
-                             ("user@example.com", "123456789", "NewP@ssw0rd", False),
-                             ("user@example.com", "1234567", "NewP@ssw0rd", False),
-                             ("user@example.com", "12345678", None, False),
-                             ("user@example.com", "12345678", "", False),
-                             ("user@example.com", "12345678", "NewP@ssw0rd!", True)
-                         ])
-def test_reset_password_boundary_values(email, otp, new_password, expected):
-    """Test boundary values for resetting password."""
-    result = reset_password(email, otp, new_password)
-    assert result == expected
+@pytest.mark.parametrize("email", [
+    "user@example.com",
+    "user+extra@example.com",
+    "user-extra@subdomain.example.com"
+])
+def test_login_valid_email(email):
+    # --- Happy path ---
+    password = "Password123!"
+    auth_token, jwt_access_token, refresh_token, _ = login(email, password)
+    assert isinstance(auth_token, str)
+    assert isinstance(jwt_access_token, str)
+    assert isinstance(refresh_token, str)
 
-# --- Edge cases ---
-def test_reset_password_none_email():
-    """Test None email."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password(None, "12345678", "NewP@ssw0rd")
-    assert str(exc_info.value) == "Email is mandatory."
+@pytest.mark.parametrize("email", [
+    "",  # empty string
+    " ",  # whitespace-only string
+    None,  # null email
+    "user@example"  # invalid domain
+])
+def test_login_invalid_email(email):
+    # --- Error handling ---
+    password = "Password123!"
+    with pytest.raises(ValidationError) as exc_info:
+        login(email, password)
+    assert str(exc_info.value) == "Invalid email format"
 
-def test_reset_password_empty_email():
-    """Test empty email."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("", "12345678", "NewP@ssw0rd")
-    assert str(exc_info.value) == "Email is mandatory."
+@pytest.mark.parametrize("password", [
+    "password",  # too short
+    "a" * 7,  # exactly 7 characters (minimum boundary - 1)
+    "a" * 65,  # exactly 65 characters (maximum boundary + 1)
+    "!@#$%^&*()",  # no lowercase letter
+    "password123!",  # no special character
+    "Password123",  # no digit
+])
+def test_login_invalid_password(password):
+    # --- Error handling ---
+    email = "user@example.com"
+    with pytest.raises(ValidationError) as exc_info:
+        login(email, password)
+    assert str(exc_info.value) == "Password does not meet complexity requirements"
 
-def test_reset_password_none_otp():
-    """Test None OTP."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", None, "NewP@ssw0rd")
-    assert str(exc_info.value) == "OTP is valid for 5 minutes."
+@pytest.mark.parametrize("num_attempts", [1, 2, 3, 4, 5])
+def test_login_lock_account(num_attempts):
+    # --- Error handling ---
+    email = "user@example.com"
+    password = "Password123!"
+    with patch("solution.login_attempts", return_value=num_attempts) as mock:
+        with pytest.raises(AccountLockedError):
+            login(email, password)
 
-def test_reset_password_empty_otp():
-    """Test empty OTP."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "", "NewP@ssw0rd")
-    assert str(exc_info.value) == "OTP is valid for 5 minutes."
+@pytest.mark.parametrize("num_requests", [1, 2, 3, 4, 5])
+def test_login_rate_limit(num_requests):
+    # --- Error handling ---
+    email = "user@example.com"
+    password = "Password123!"
+    with patch("solution.login_attempts", return_value=num_requests) as mock:
+        with pytest.raises(RateLimitError) as exc_info:
+            login(email, password)
+        assert str(exc_info.value) == "Too many requests"
 
-def test_reset_password_none_new_password():
-    """Test None new password."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", None)
-    assert str(exc_info.value) == "Password minimum length is 8."
+@pytest.mark.parametrize("num_requests", [11])
+def test_login_rate_limit_exceeded(num_requests):
+    # --- Error handling ---
+    email = "user@example.com"
+    password = "Password123!"
+    with patch("solution.login_attempts", return_value=num_requests) as mock:
+        with pytest.raises(RateLimitError) as exc_info:
+            login(email, password)
+        assert str(exc_info.value) == "Too many requests"
 
-def test_reset_password_empty_new_password():
-    """Test empty new password."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "")
-    assert str(exc_info.value) == "Password minimum length is 8."
-
-def test_reset_password_short_new_password():
-    """Test short new password."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "NewP@ss")
-    assert str(exc_info.value) == "Password minimum length is 8."
-
-def test_reset_password_no_uppercase_new_password():
-    """Test new password without uppercase."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "newp@ssw0rd")
-    assert str(exc_info.value) == "Password must contain uppercase, lowercase, digit, and special character."
-
-def test_reset_password_no_lowercase_new_password():
-    """Test new password without lowercase."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "NEWP@SSW0RD")
-    assert str(exc_info.value) == "Password must contain uppercase, lowercase, digit, and special character."
-
-def test_reset_password_no_digit_new_password():
-    """Test new password without digit."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "NewP@ssw")
-    assert str(exc_info.value) == "Password must contain uppercase, lowercase, digit, and special character."
-
-def test_reset_password_no_special_char_new_password():
-    """Test new password without special character."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "NewPssw0rd")
-    assert str(exc_info.value) == "Password must contain uppercase, lowercase, digit, and special character."
-
-def test_reset_password_same_as_previous_new_password():
-    """Test new password same as previous."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "OldP@ssw0rd")
-    assert str(exc_info.value) == "New password cannot match the previous password."
-
-def test_reset_password_expired_otp():
-    """Test expired OTP."""
-    with pytest.raises(ValueError) as exc_info:
-        reset_password("user@example.com", "12345678", "NewP@ssw0rd")
-    assert str(exc_info.value) == "Expired OTP should display an error."
-
-def test_reset_password_max_otp_attempts():
-    """Test maximum OTP attempts."""
-    for _ in range(3):
-        with pytest.raises(ValueError) as exc_info:
-            reset_password("user@example.com", "12345678", "NewP@ssw0rd")
-        assert str(exc_info.value) == "Expired OTP should display an error."
+def test_login_jwt_token():
+    # --- Happy path ---
+    email = "user@example.com"
+    password = "Password123!"
+    auth_token, jwt_access_token, refresh_token, _ = login(email, password)
+    assert jwt_access_token.startswith("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
