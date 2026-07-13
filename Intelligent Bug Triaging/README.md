@@ -222,17 +222,17 @@ Intelligent Bug Triaging/
 
 ## Execution Evidence
 
-1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
-   ![Bug Triaging Tests](../assets/screenshots/06_bugtriage_pytest.png)
+1. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
+   ![Bug Triaging Server Start](../assets/screenshots/06_bugtriage_server_start.png)
 
-2. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
-   ![Bug Triaging Server Start](../assets/screenshots/07_bugtriage_server_start.png)
+2. **Live Web Dashboard — All Tickets with Urgencies & Severities**
+   ![Bug Triaging Dashboard](../assets/screenshots/07_bugtriage_dashboard.png)
 
-3. **Live Web Dashboard (Ticket list with urgencies & severities)**
-   ![Bug Triaging Dashboard](../assets/screenshots/08_bugtriage_dashboard.png)
+3. **"Report Bug" Submission Form Modal**
+   ![Bug Triaging Report Form](../assets/screenshots/08_bugtriage_report_form.png)
 
-4. **"Report Bug" Submission Form**
-   ![Bug Triaging Bug Form](../assets/screenshots/09_bugtriage_form.png)
+4. **Filtered Dashboard View — Backend Category Selected**
+   ![Bug Triaging Category Filter](../assets/screenshots/09_bugtriage_category_filter.png)
 
-5. **Filtered Dashboard View (Category-based filtering)**
-   ![Bug Triaging Category Filter](../assets/screenshots/10_bugtriage_filter.png)
+5. **Server Activity Logs — API Requests in Real Time**
+   ![Bug Triaging Server Logs](../assets/screenshots/10_bugtriage_server_logs.png)

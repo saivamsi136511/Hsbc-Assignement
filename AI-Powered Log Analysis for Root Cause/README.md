@@ -220,14 +220,14 @@ AI-Powered Log Analysis for Root Cause/
 
 ## Execution Evidence
 
-1. **Unit Test Execution (`pytest tests/ -v`)**
-   ![Log Analysis Tests](../assets/screenshots/11_loganalysis_pytest.png)
+1. **Unit Test Execution (`pytest tests/ -v`) — 27 tests passed**
+   ![Log Analysis Unit Tests](../assets/screenshots/14_loganalysis_pytest.png)
 
-2. **Dry Run Mode (Log Ingestion, Redaction & Context assembly)**
-   ![Log Analysis Dry Run](../assets/screenshots/12_loganalysis_dryrun.png)
+2. **Dry Run — Log Ingestion, Redaction & Context Assembly (verbose)**
+   ![Log Analysis Dry Run Verbose](../assets/screenshots/11_loganalysis_dryrun_verbose.png)
 
-3. **Full AI Analysis (Identified Root Cause & Suggestion)**
-   ![Log Analysis Full Run](../assets/screenshots/13_loganalysis_full_run.png)
+3. **Full AI Analysis — Identified Root Cause & Suggested Fix**
+   ![Log Analysis Full AI Run](../assets/screenshots/12_loganalysis_full_ai_run.png)
 
-4. **Generated Markdown Report opened in Editor**
-   ![Log Analysis Report](../assets/screenshots/14_loganalysis_markdown_report.png)
+4. **Generated Markdown Report (`report.md`) opened in Editor**
+   ![Log Analysis Markdown Report](../assets/screenshots/13_loganalysis_markdown_report_editor.png)

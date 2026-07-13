@@ -169,11 +169,11 @@ Automated Test Case Generation/
 
 ## Execution Evidence
 
-1. **Unit Test Execution (`pytest test_generated.py -v`)**
-   ![Test Gen Tests](../assets/screenshots/03_testgen_pytest.png)
+1. **Ollama Setup — Pull Code Model (`ollama pull qwen2.5-coder:7b`)**
+   ![Test Gen Ollama Pull Qwen](../assets/screenshots/03_testgen_pull_qwen.png)
 
-2. **Ollama Setup for Code Model (`ollama pull qwen2.5-coder:7b`)**
-   ![Test Gen Ollama Pull](../assets/screenshots/04_testgen_pull_qwen.png)
+2. **Test Generation Run — Output Summary (18 test functions written)**
+   ![Test Gen Generate Output](../assets/screenshots/04_testgen_generate.png)
 
-3. **Real AI Generation & Compilation Verification Run**
-   ![Test Gen Run](../assets/screenshots/05_testgen_run.png)
+3. **Generated Test File (`test_generated.py`) opened in VS Code**
+   ![Test Gen Generated File](../assets/screenshots/05_testgen_generated_file.png)

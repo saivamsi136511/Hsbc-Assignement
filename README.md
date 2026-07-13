@@ -37,11 +37,11 @@ ollama pull llava
 
 #### Setup & Verification Evidence
 
-* **Interactive Project Launcher Menu (`python run.py`)**
-  ![Interactive Menu](assets/screenshots/01_interactive_menu.png)
-
 * **Ollama Pull `llama3.1` Model**
-  ![Ollama Pull Llama](assets/screenshots/02_ollama_pull_llama.png)
+  ![Ollama Pull Llama](assets/screenshots/01_ollama_pull_llama.png)
+
+* **Install All Dependencies (`pip install -r requirements.txt`)**
+  ![Pip Install Requirements](assets/screenshots/02_pip_install.png)
 
 ---
 
@@ -92,17 +92,17 @@ python log_analyzer.py sample_logs/python_chained.log --dry-run --verbose
 
 #### Execution Evidence
 
-1. **Unit Test Execution (`pytest tests/ -v`)**
-   ![Log Analysis Tests](assets/screenshots/11_loganalysis_pytest.png)
+1. **Unit Test Execution (`pytest tests/ -v`) — 27 tests passed**
+   ![Log Analysis Unit Tests](assets/screenshots/14_loganalysis_pytest.png)
 
-2. **Dry Run Mode (Log Ingestion, Redaction & Context assembly)**
-   ![Log Analysis Dry Run](assets/screenshots/12_loganalysis_dryrun.png)
+2. **Dry Run — Log Ingestion, Redaction & Context Assembly (verbose)**
+   ![Log Analysis Dry Run Verbose](assets/screenshots/11_loganalysis_dryrun_verbose.png)
 
-3. **Full AI Analysis (Identified Root Cause & Suggestion)**
-   ![Log Analysis Full Run](assets/screenshots/13_loganalysis_full_run.png)
+3. **Full AI Analysis — Identified Root Cause & Suggested Fix**
+   ![Log Analysis Full AI Run](assets/screenshots/12_loganalysis_full_ai_run.png)
 
-4. **Generated Markdown Report opened in Editor**
-   ![Log Analysis Report](assets/screenshots/14_loganalysis_markdown_report.png)
+4. **Generated Markdown Report (`report.md`) opened in Editor**
+   ![Log Analysis Markdown Report](assets/screenshots/13_loganalysis_markdown_report_editor.png)
 
 ---
 
@@ -127,14 +127,14 @@ python generate_tests.py -i samples/sample_user_story.md --dry-run
 
 #### Execution Evidence
 
-1. **Unit Test Execution (`pytest test_generated.py -v`)**
-   ![Test Gen Tests](assets/screenshots/03_testgen_pytest.png)
+1. **Ollama Setup — Pull Code Model (`ollama pull qwen2.5-coder:7b`)**
+   ![Test Gen Ollama Pull Qwen](assets/screenshots/03_testgen_pull_qwen.png)
 
-2. **Ollama Setup for Code Model (`ollama pull qwen2.5-coder:7b`)**
-   ![Test Gen Ollama Pull](assets/screenshots/04_testgen_pull_qwen.png)
+2. **Test Generation Run — Output Summary (18 test functions written)**
+   ![Test Gen Generate Output](assets/screenshots/04_testgen_generate.png)
 
-3. **Real AI Generation & Compilation Verification Run**
-   ![Test Gen Run](assets/screenshots/05_testgen_run.png)
+3. **Generated Test File (`test_generated.py`) opened in VS Code**
+   ![Test Gen Generated File](assets/screenshots/05_testgen_generated_file.png)
 
 ---
 
@@ -159,20 +159,20 @@ python app.py --provider none    # heuristic-only, no Ollama needed
 
 #### Execution Evidence
 
-1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
-   ![Bug Triaging Tests](assets/screenshots/06_bugtriage_pytest.png)
+1. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
+   ![Bug Triaging Server Start](assets/screenshots/06_bugtriage_server_start.png)
 
-2. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
-   ![Bug Triaging Server Start](assets/screenshots/07_bugtriage_server_start.png)
+2. **Live Web Dashboard — All Tickets with Urgencies & Severities**
+   ![Bug Triaging Dashboard](assets/screenshots/07_bugtriage_dashboard.png)
 
-3. **Live Web Dashboard (Ticket list with urgencies & severities)**
-   ![Bug Triaging Dashboard](assets/screenshots/08_bugtriage_dashboard.png)
+3. **"Report Bug" Submission Form Modal**
+   ![Bug Triaging Report Form](assets/screenshots/08_bugtriage_report_form.png)
 
-4. **"Report Bug" Submission Form**
-   ![Bug Triaging Bug Form](assets/screenshots/09_bugtriage_form.png)
+4. **Filtered Dashboard View — Backend Category Selected**
+   ![Bug Triaging Category Filter](assets/screenshots/09_bugtriage_category_filter.png)
 
-5. **Filtered Dashboard View (Category-based filtering)**
-   ![Bug Triaging Category Filter](assets/screenshots/10_bugtriage_filter.png)
+5. **Server Activity Logs — API Requests in Real Time**
+   ![Bug Triaging Server Logs](assets/screenshots/10_bugtriage_server_logs.png)
 
 ---
 
@@ -200,14 +200,14 @@ python visual_regressor.py \
 
 #### Execution Evidence
 
-1. **Unit Test Execution (`pytest tests/ -v`)**
-   ![VRT Tests](assets/screenshots/15_vrt_pytest.png)
+1. **Sample Screenshots — Baseline vs New Deployment (side-by-side in editor)**
+   ![VRT Screenshots Side by Side](assets/screenshots/15_vrt_screenshots_side_by_side.png)
 
-2. **UI Mock Verification (New deployment layout opened in editor)**
-   ![VRT Screenshot Input](assets/screenshots/16_vrt_new_deployment.png)
+2. **Dry Run — OpenCV Structural Metric Assessment (no AI, skipped)**
+   ![VRT Dry Run Report](assets/screenshots/16_vrt_dryrun_report.png)
 
-3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
-   ![VRT Execution Run](assets/screenshots/17_vrt_run.png)
+3. **Full AI Run — OpenCV + Ollama Vision Analysis**
+   ![VRT Full AI Run](assets/screenshots/17_vrt_full_ai_run.png)
 
 ---
 
@@ -230,7 +230,7 @@ python test_login.py    # requires: ollama serve && ollama pull llama3.1
 
 #### Execution Evidence
 
-1. **Live Self-Healing Run (Intercepts exceptions and patches selectors via LLM)**
+1. **Live Self-Healing Run — Intercepts Broken Locators & Patches via LLM**
    ![Self Healing Run](assets/screenshots/18_self_healing_run.png)
 
 ---

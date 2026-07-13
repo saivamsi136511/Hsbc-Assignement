@@ -215,11 +215,11 @@ Visual Regression Testing with Computer Vision/
 
 ## Execution Evidence
 
-1. **Unit Test Execution (`pytest tests/ -v`)**
-   ![VRT Tests](../assets/screenshots/15_vrt_pytest.png)
+1. **Sample Screenshots — Baseline vs New Deployment (side-by-side in editor)**
+   ![VRT Screenshots Side by Side](../assets/screenshots/15_vrt_screenshots_side_by_side.png)
 
-2. **UI Mock Verification (New deployment layout opened in editor)**
-   ![VRT Screenshot Input](../assets/screenshots/16_vrt_new_deployment.png)
+2. **Dry Run — OpenCV Structural Metric Assessment (no AI, skipped)**
+   ![VRT Dry Run Report](../assets/screenshots/16_vrt_dryrun_report.png)
 
-3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
-   ![VRT Execution Run](../assets/screenshots/17_vrt_run.png)
+3. **Full AI Run — OpenCV + Ollama Vision Analysis**
+   ![VRT Full AI Run](../assets/screenshots/17_vrt_full_ai_run.png)
