@@ -217,3 +217,25 @@ Intelligent Bug Triaging/
 | `provider=ollama` — no AI fields | Run `ollama serve && ollama pull llama3.1` |
 | Port 5000 already in use | Run with `--port 5001` |
 | All bugs get severity=Unknown | The model response was empty; check Ollama is running |
+
+---
+
+## Execution Evidence
+<details>
+<summary><b>Click to view Bug Triaging Screenshots</b></summary>
+
+1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
+   ![Bug Triaging Tests](../assets/screenshots/06_bugtriage_pytest.png)
+
+2. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
+   ![Bug Triaging Server Start](../assets/screenshots/07_bugtriage_server_start.png)
+
+3. **Live Web Dashboard (Ticket list with urgencies & severities)**
+   ![Bug Triaging Dashboard](../assets/screenshots/08_bugtriage_dashboard.png)
+
+4. **"Report Bug" Submission Form**
+   ![Bug Triaging Bug Form](../assets/screenshots/09_bugtriage_form.png)
+
+5. **Filtered Dashboard View (Category-based filtering)**
+   ![Bug Triaging Category Filter](../assets/screenshots/10_bugtriage_filter.png)
+</details>

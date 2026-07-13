@@ -215,3 +215,22 @@ AI-Powered Log Analysis for Root Cause/
 | `likely_file: null` | Add `--source-dir` to enable frame-to-source resolution |
 | Model times out | Use `--token-budget 1000` to reduce context; or use `llama3.2:3b` |
 | PII in report | Run with `--no-redact` disabled (default is to redact) |
+
+---
+
+## Execution Evidence
+<details>
+<summary><b>Click to view Log Analysis Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest tests/ -v`)**
+   ![Log Analysis Tests](../assets/screenshots/11_loganalysis_pytest.png)
+
+2. **Dry Run Mode (Log Ingestion, Redaction & Context assembly)**
+   ![Log Analysis Dry Run](../assets/screenshots/12_loganalysis_dryrun.png)
+
+3. **Full AI Analysis (Identified Root Cause & Suggestion)**
+   ![Log Analysis Full Run](../assets/screenshots/13_loganalysis_full_run.png)
+
+4. **Generated Markdown Report opened in Editor**
+   ![Log Analysis Report](../assets/screenshots/14_loganalysis_markdown_report.png)
+</details>

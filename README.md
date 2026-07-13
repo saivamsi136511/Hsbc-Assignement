@@ -35,6 +35,17 @@ ollama pull llama3.1
 ollama pull llava
 ```
 
+#### Setup & Verification Evidence
+<details>
+<summary><b>Click to view Prerequisites Screenshots</b></summary>
+
+* **Interactive Project Launcher Menu (`python run.py`)**
+  ![Interactive Menu](assets/screenshots/01_interactive_menu.png)
+
+* **Ollama Pull `llama3.1` Model**
+  ![Ollama Pull Llama](assets/screenshots/02_ollama_pull_llama.png)
+</details>
+
 ---
 
 ## Quick Start — Interactive Menu
@@ -82,6 +93,23 @@ cd "AI-Powered Log Analysis for Root Cause"
 python log_analyzer.py sample_logs/python_chained.log --dry-run --verbose
 ```
 
+#### Execution Evidence
+<details>
+<summary><b>Click to view Log Analysis Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest tests/ -v`)**
+   ![Log Analysis Tests](assets/screenshots/11_loganalysis_pytest.png)
+
+2. **Dry Run Mode (Log Ingestion, Redaction & Context assembly)**
+   ![Log Analysis Dry Run](assets/screenshots/12_loganalysis_dryrun.png)
+
+3. **Full AI Analysis (Identified Root Cause & Suggestion)**
+   ![Log Analysis Full Run](assets/screenshots/13_loganalysis_full_run.png)
+
+4. **Generated Markdown Report opened in Editor**
+   ![Log Analysis Report](assets/screenshots/14_loganalysis_markdown_report.png)
+</details>
+
 ---
 
 ### 2. Automated Test Case Generation
@@ -103,6 +131,20 @@ cd "Automated Test Case Generation"
 python generate_tests.py -i samples/sample_user_story.md --dry-run
 ```
 
+#### Execution Evidence
+<details>
+<summary><b>Click to view Test Case Generation Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest test_generated.py -v`)**
+   ![Test Gen Tests](assets/screenshots/03_testgen_pytest.png)
+
+2. **Ollama Setup for Code Model (`ollama pull qwen2.5-coder:7b`)**
+   ![Test Gen Ollama Pull](assets/screenshots/04_testgen_pull_qwen.png)
+
+3. **Real AI Generation & Compilation Verification Run**
+   ![Test Gen Run](assets/screenshots/05_testgen_run.png)
+</details>
+
 ---
 
 ### 3. Intelligent Bug Triaging
@@ -123,6 +165,26 @@ cd "Intelligent Bug Triaging"
 python app.py --provider none    # heuristic-only, no Ollama needed
 # Dashboard: http://localhost:5000
 ```
+
+#### Execution Evidence
+<details>
+<summary><b>Click to view Bug Triaging Screenshots</b></summary>
+
+1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
+   ![Bug Triaging Tests](assets/screenshots/06_bugtriage_pytest.png)
+
+2. **Flask Server Startup (`python app.py --provider ollama --model llama3.1`)**
+   ![Bug Triaging Server Start](assets/screenshots/07_bugtriage_server_start.png)
+
+3. **Live Web Dashboard (Ticket list with urgencies & severities)**
+   ![Bug Triaging Dashboard](assets/screenshots/08_bugtriage_dashboard.png)
+
+4. **"Report Bug" Submission Form**
+   ![Bug Triaging Bug Form](assets/screenshots/09_bugtriage_form.png)
+
+5. **Filtered Dashboard View (Category-based filtering)**
+   ![Bug Triaging Category Filter](assets/screenshots/10_bugtriage_filter.png)
+</details>
 
 ---
 
@@ -148,6 +210,20 @@ python visual_regressor.py \
   --dry-run --verbose
 ```
 
+#### Execution Evidence
+<details>
+<summary><b>Click to view Visual Regression Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest tests/ -v`)**
+   ![VRT Tests](assets/screenshots/15_vrt_pytest.png)
+
+2. **UI Mock Verification (New deployment layout opened in editor)**
+   ![VRT Screenshot Input](assets/screenshots/16_vrt_new_deployment.png)
+
+3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
+   ![VRT Execution Run](assets/screenshots/17_vrt_run.png)
+</details>
+
 ---
 
 ### 5. Self-Healing UI Automation
@@ -166,6 +242,14 @@ A Selenium proxy that catches `NoSuchElementException` and automatically heals t
 cd "Self-Healing UI Automation"
 python test_login.py    # requires: ollama serve && ollama pull llama3.1
 ```
+
+#### Execution Evidence
+<details>
+<summary><b>Click to view Self-Healing Screenshots</b></summary>
+
+1. **Live Self-Healing Run (Intercepts exceptions and patches selectors via LLM)**
+   ![Self Healing Run](assets/screenshots/18_self_healing_run.png)
+</details>
 
 ---
 

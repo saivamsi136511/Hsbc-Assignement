@@ -210,3 +210,19 @@ Visual Regression Testing with Computer Vision/
 | SSIM too strict | Lower `--threshold` to `0.90` |
 | Model too slow | Use `moondream` (~1.7 GB) instead of `llava` |
 | OpenCV not found | Run `pip install opencv-python-headless scikit-image` |
+
+---
+
+## Execution Evidence
+<details>
+<summary><b>Click to view Visual Regression Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest tests/ -v`)**
+   ![VRT Tests](../assets/screenshots/15_vrt_pytest.png)
+
+2. **UI Mock Verification (New deployment layout opened in editor)**
+   ![VRT Screenshot Input](../assets/screenshots/16_vrt_new_deployment.png)
+
+3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
+   ![VRT Execution Run](../assets/screenshots/17_vrt_run.png)
+</details>

@@ -251,3 +251,13 @@ Edit `constants.py`:
 ```python
 MAX_HEAL_ATTEMPTS = 3
 ```
+
+---
+
+## Execution Evidence
+<details>
+<summary><b>Click to view Self-Healing Screenshots</b></summary>
+
+1. **Live Self-Healing Run (Intercepts exceptions and patches selectors via LLM)**
+   ![Self Healing Run](../assets/screenshots/18_self_healing_run.png)
+</details>

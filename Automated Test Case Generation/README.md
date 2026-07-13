@@ -164,3 +164,19 @@ Automated Test Case Generation/
 | `read timeout` after tokens | Increase `--read-timeout` or use a smaller model |
 | Tests import-fail (`ModuleNotFoundError: solution`) | Run with `--with-stub` to generate the scaffold |
 | Batch merge produces duplicate functions | Function names include a `__b<n>` suffix — rename them after review |
+
+---
+
+## Execution Evidence
+<details>
+<summary><b>Click to view Test Case Generation Screenshots</b></summary>
+
+1. **Unit Test Execution (`pytest test_generated.py -v`)**
+   ![Test Gen Tests](../assets/screenshots/03_testgen_pytest.png)
+
+2. **Ollama Setup for Code Model (`ollama pull qwen2.5-coder:7b`)**
+   ![Test Gen Ollama Pull](../assets/screenshots/04_testgen_pull_qwen.png)
+
+3. **Real AI Generation & Compilation Verification Run**
+   ![Test Gen Run](../assets/screenshots/05_testgen_run.png)
+</details>
