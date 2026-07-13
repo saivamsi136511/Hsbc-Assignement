@@ -5,6 +5,13 @@ FROM python:3.10-slim
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Ollama connection defaults for containerised runs.
+# host.docker.internal resolves to the host machine from inside Docker
+# (works on Docker Desktop for Windows/macOS; Linux users may need --add-host).
+# Override at runtime: docker run -e OLLAMA_BASE_URL=http://192.168.x.x:11434 ...
+ENV OLLAMA_BASE_URL=http://host.docker.internal:11434
+ENV OLLAMA_MODEL=llama3.1
+
 # Set the working directory in the container
 WORKDIR /app
 

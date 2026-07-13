@@ -190,7 +190,9 @@ python test_login.py    # requires: ollama serve && ollama pull llama3.1
 HSBC Assignment/
 ├── run.py                              # Interactive project launcher menu
 ├── requirements.txt                    # Root-level combined dependencies
+├── Dockerfile                          # Container-based deployment
 ├── README.md                           # This file
+├── DEPLOYMENT.md                       # Step-by-step Ollama & environment setup guide
 │
 ├── AI-Powered Log Analysis for Root Cause/
 ├── Automated Test Case Generation/
