@@ -36,15 +36,12 @@ ollama pull llava
 ```
 
 #### Setup & Verification Evidence
-<details>
-<summary><b>Click to view Prerequisites Screenshots</b></summary>
 
 * **Interactive Project Launcher Menu (`python run.py`)**
   ![Interactive Menu](assets/screenshots/01_interactive_menu.png)
 
 * **Ollama Pull `llama3.1` Model**
   ![Ollama Pull Llama](assets/screenshots/02_ollama_pull_llama.png)
-</details>
 
 ---
 
@@ -94,8 +91,6 @@ python log_analyzer.py sample_logs/python_chained.log --dry-run --verbose
 ```
 
 #### Execution Evidence
-<details>
-<summary><b>Click to view Log Analysis Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest tests/ -v`)**
    ![Log Analysis Tests](assets/screenshots/11_loganalysis_pytest.png)
@@ -108,7 +103,6 @@ python log_analyzer.py sample_logs/python_chained.log --dry-run --verbose
 
 4. **Generated Markdown Report opened in Editor**
    ![Log Analysis Report](assets/screenshots/14_loganalysis_markdown_report.png)
-</details>
 
 ---
 
@@ -132,8 +126,6 @@ python generate_tests.py -i samples/sample_user_story.md --dry-run
 ```
 
 #### Execution Evidence
-<details>
-<summary><b>Click to view Test Case Generation Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest test_generated.py -v`)**
    ![Test Gen Tests](assets/screenshots/03_testgen_pytest.png)
@@ -143,7 +135,6 @@ python generate_tests.py -i samples/sample_user_story.md --dry-run
 
 3. **Real AI Generation & Compilation Verification Run**
    ![Test Gen Run](assets/screenshots/05_testgen_run.png)
-</details>
 
 ---
 
@@ -167,8 +158,6 @@ python app.py --provider none    # heuristic-only, no Ollama needed
 ```
 
 #### Execution Evidence
-<details>
-<summary><b>Click to view Bug Triaging Screenshots</b></summary>
 
 1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
    ![Bug Triaging Tests](assets/screenshots/06_bugtriage_pytest.png)
@@ -184,7 +173,6 @@ python app.py --provider none    # heuristic-only, no Ollama needed
 
 5. **Filtered Dashboard View (Category-based filtering)**
    ![Bug Triaging Category Filter](assets/screenshots/10_bugtriage_filter.png)
-</details>
 
 ---
 
@@ -211,8 +199,6 @@ python visual_regressor.py \
 ```
 
 #### Execution Evidence
-<details>
-<summary><b>Click to view Visual Regression Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest tests/ -v`)**
    ![VRT Tests](assets/screenshots/15_vrt_pytest.png)
@@ -222,7 +208,6 @@ python visual_regressor.py \
 
 3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
    ![VRT Execution Run](assets/screenshots/17_vrt_run.png)
-</details>
 
 ---
 
@@ -244,12 +229,9 @@ python test_login.py    # requires: ollama serve && ollama pull llama3.1
 ```
 
 #### Execution Evidence
-<details>
-<summary><b>Click to view Self-Healing Screenshots</b></summary>
 
 1. **Live Self-Healing Run (Intercepts exceptions and patches selectors via LLM)**
    ![Self Healing Run](assets/screenshots/18_self_healing_run.png)
-</details>
 
 ---
 

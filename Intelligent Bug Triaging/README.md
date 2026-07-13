@@ -221,8 +221,6 @@ Intelligent Bug Triaging/
 ---
 
 ## Execution Evidence
-<details>
-<summary><b>Click to view Bug Triaging Screenshots</b></summary>
 
 1. **Unit & Integration Test Execution (`pytest test_triaging.py -v`)**
    ![Bug Triaging Tests](../assets/screenshots/06_bugtriage_pytest.png)
@@ -238,4 +236,3 @@ Intelligent Bug Triaging/
 
 5. **Filtered Dashboard View (Category-based filtering)**
    ![Bug Triaging Category Filter](../assets/screenshots/10_bugtriage_filter.png)
-</details>

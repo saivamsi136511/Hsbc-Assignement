@@ -219,8 +219,6 @@ AI-Powered Log Analysis for Root Cause/
 ---
 
 ## Execution Evidence
-<details>
-<summary><b>Click to view Log Analysis Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest tests/ -v`)**
    ![Log Analysis Tests](../assets/screenshots/11_loganalysis_pytest.png)
@@ -233,4 +231,3 @@ AI-Powered Log Analysis for Root Cause/
 
 4. **Generated Markdown Report opened in Editor**
    ![Log Analysis Report](../assets/screenshots/14_loganalysis_markdown_report.png)
-</details>

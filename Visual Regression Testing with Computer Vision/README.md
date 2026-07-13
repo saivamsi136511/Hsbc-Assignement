@@ -214,8 +214,6 @@ Visual Regression Testing with Computer Vision/
 ---
 
 ## Execution Evidence
-<details>
-<summary><b>Click to view Visual Regression Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest tests/ -v`)**
    ![VRT Tests](../assets/screenshots/15_vrt_pytest.png)
@@ -225,4 +223,3 @@ Visual Regression Testing with Computer Vision/
 
 3. **Visual Regression Run (OpenCV structural metric assessment & semantic LLM check)**
    ![VRT Execution Run](../assets/screenshots/17_vrt_run.png)
-</details>

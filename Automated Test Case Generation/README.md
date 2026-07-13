@@ -168,8 +168,6 @@ Automated Test Case Generation/
 ---
 
 ## Execution Evidence
-<details>
-<summary><b>Click to view Test Case Generation Screenshots</b></summary>
 
 1. **Unit Test Execution (`pytest test_generated.py -v`)**
    ![Test Gen Tests](../assets/screenshots/03_testgen_pytest.png)
@@ -179,4 +177,3 @@ Automated Test Case Generation/
 
 3. **Real AI Generation & Compilation Verification Run**
    ![Test Gen Run](../assets/screenshots/05_testgen_run.png)
-</details>
